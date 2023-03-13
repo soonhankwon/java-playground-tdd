@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 public class Car {
     public static final int MAX_LENGTH_NAME = 5;
+    public static final int MIN_LOCATION = 0;
     private String name;
     private int location;
 
@@ -16,7 +17,21 @@ public class Car {
     }
 
     public Car() {
+    }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public int getLocation() {
+        return this.location;
+    }
+
+    public void setLocation(int location) {
+        if (location < MIN_LOCATION) {
+            throw new IllegalArgumentException();
+        }
+        this.location = location;
     }
 
     public List<Car> split(String input) {
@@ -25,26 +40,19 @@ public class Car {
                 .collect(Collectors.toList());
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public void setLocation(int location) {
-        this.location = location;
-    }
-
-    public int getLocation() {
-        return this.location;
-    }
-
-    public void move(int result) {
-        if(result > 4) {
-            setLocation(this.location + 1);
-        }
+    public void move() {
+        setLocation(this.location + 1);
     }
 
     public void printLocation() {
         String str = "-".repeat(Math.max(0, getLocation()));
         System.out.println(getName() + " : " + str);
+    }
+
+    public void play() {
+        int random = (int) (Math.random() * 9) + 1;
+        if (random >= 4)
+            move();
+        printLocation();
     }
 }
