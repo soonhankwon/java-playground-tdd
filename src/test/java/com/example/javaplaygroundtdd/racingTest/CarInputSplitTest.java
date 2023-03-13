@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class carInputSplitTest {
+public class CarInputSplitTest {
     @Test
     @DisplayName("자동차 이름은 쉼표(,)를 기준으로 구분 테스트")
     void InputSplit() {

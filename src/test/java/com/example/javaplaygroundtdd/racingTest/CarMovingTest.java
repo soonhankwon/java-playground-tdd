@@ -4,13 +4,15 @@ import com.example.javaplaygroundtdd.racing.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class carMovingTest {
+public class CarMovingTest {
     @Test
     @DisplayName("자동차 전진 테스트")
     void move() {
-        int result = 5;
         Car car = new Car("pobi");
         car.move();
         car.move();
@@ -35,6 +37,25 @@ public class carMovingTest {
         Car car = new Car("pobi");
         for(int i = 0; i < 10; i++) {
             car.play();
+        }
+    }
+
+    @Test
+    @DisplayName("여러대 게임 테스트")
+    void moveMultiCars() {
+        Car car = new Car("pobi");
+        Car car2 = new Car("crong");
+        Car car3 = new Car("honux");
+
+        List<Car> carList = new ArrayList<>();
+        carList.add(car);
+        carList.add(car2);
+        carList.add(car3);
+
+        for(int i = 0; i < 5; i++) {
+            for(Car c : carList) {
+                c.play();
+            }
         }
     }
 }
