@@ -3,9 +3,6 @@ package com.example.javaplaygroundtdd.racing.domain;
 import java.util.Objects;
 
 public class Car {
-    private static final int FORWARD_NUM = 4;
-    private static final int MAX_BOUND = 10;
-
     private final Name name;
     private Position position;
 
@@ -19,12 +16,15 @@ public class Car {
     }
 
     public Position getPosition() {
-        return position;
+        return this.position;
+    }
+    public Name getName() {
+        return this.name;
     }
 
     public void move(MovingStrategy movingStrategy) {
         if(movingStrategy.movable())
-            position = position.move();
+            position.move();
     }
 
     public boolean isWinner(int maxPosition) {

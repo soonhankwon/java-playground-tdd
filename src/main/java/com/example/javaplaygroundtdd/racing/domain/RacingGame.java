@@ -1,13 +1,14 @@
 package com.example.javaplaygroundtdd.racing.domain;
 
 import com.example.javaplaygroundtdd.racing.utils.StringUtils;
+import com.example.javaplaygroundtdd.racing.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class RacingGame {
-    private List<Car> cars;
+    private final List<Car> cars;
     private int tryNo;
 
     public RacingGame(String carNames, int tryNo) {
@@ -35,6 +36,7 @@ public class RacingGame {
     private void moveCars() {
         for(Car car : cars) {
             car.move(new RandomMovingStrategy());
+            ResultView.printResult(car);
         }
     }
 

@@ -16,20 +16,11 @@ public class Position {
         this.position = position;
     }
 
-    public Position move() {
+    public void move() {
         position = position + 1;
-        return this;
     }
     public int getPosition() {
         return this.position;
-    }
-
-    public void move3() {
-        position = position + 1;
-    }
-
-    public Position move2() {
-        return new Position(position + 1);
     }
 
     public boolean isSame(int maxPosition) {
