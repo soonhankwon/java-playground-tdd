@@ -20,6 +20,9 @@ public class Position {
         position = position + 1;
         return this;
     }
+    public int getPosition() {
+        return this.position;
+    }
 
     public void move3() {
         position = position + 1;
@@ -29,6 +32,14 @@ public class Position {
         return new Position(position + 1);
     }
 
+    public boolean isSame(int maxPosition) {
+        return this.position == maxPosition;
+    }
+
+    public boolean lessThan(Position maxPosition) {
+        return this.position < maxPosition.position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -36,7 +47,6 @@ public class Position {
         Position position1 = (Position) o;
         return position == position1.position;
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(position);

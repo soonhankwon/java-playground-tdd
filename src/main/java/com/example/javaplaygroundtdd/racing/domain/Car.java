@@ -1,31 +1,62 @@
 package com.example.javaplaygroundtdd.racing.domain;
 
-import com.example.javaplaygroundtdd.racing.utils.StringUtils;
+import java.util.Objects;
 
 public class Car {
     private static final int FORWARD_NUM = 4;
     private static final int MAX_BOUND = 10;
 
     private final Name name;
-    private int position = 0;
-    private Position position2;
+    private Position position;
 
     public Car(final String name) {
-        this.name = new Name(name);
-        this.position2 = new Position(0);
+        this(name, 0);
     }
 
-    public int getPosition() {
+    public Car(String name, int position) {
+        this.name = new Name(name);
+        this.position = new Position(position);
+    }
+
+    public Position getPosition() {
         return position;
     }
 
     public void move(MovingStrategy movingStrategy) {
         if(movingStrategy.movable())
-            position2 = position2.move();
+            position = position.move();
     }
 
-    public void move(int randomNo) {
-        if(randomNo >= FORWARD_NUM)
-            this.position++;
+    public boolean isWinner(int maxPosition) {
+        return position.isSame(maxPosition);
     }
+
+    public Position getMaxPosition(Position maxPosition) {
+        if(position.lessThan(maxPosition)) {
+            return maxPosition;
+        }
+        return this.getPosition();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(name, car.name) && Objects.equals(position, car.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name=" + name +
+                ", position=" + position +
+                '}';
+    }
+
 }
